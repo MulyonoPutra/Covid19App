@@ -2,6 +2,8 @@ import 'package:covid19/ui/utils/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'home_screen.dart';
+
 class OnboardingScreen extends StatefulWidget {
   @override
   _OnboardingScreenState createState() => _OnboardingScreenState();
@@ -60,7 +62,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 Container(
                   alignment: Alignment.centerRight,
                   child: FlatButton(
-                    onPressed: () => print('Skip'),
+                    onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomeScreen()),
+                    ),
                     child: Text(
                       'Skip',
                       style: TextStyle(
@@ -214,7 +219,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               width: double.infinity,
               color: Colors.white,
               child: GestureDetector(
-                onTap: () => print('Get started'),
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomeScreen()),
+                ),
                 child: Center(
                   child: Padding(
                     padding: EdgeInsets.only(bottom: 10.0),
