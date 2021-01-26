@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
-import 'ui/screen/onboarding_screen.dart';
+import 'ui/screen/home_screen.dart';
+import 'ui/utils/contants.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,11 +12,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Covid-19 App',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primaryColor: cPrimaryColor,
+        scaffoldBackgroundColor: cBackgroundColor,
+        textTheme: Theme.of(context).textTheme.apply(displayColor: cTextColor)
       ),
-      home: OnboardingScreen(),
+      home: HomeScreen(),
     );
   }
 }
