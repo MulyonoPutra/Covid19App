@@ -1,4 +1,4 @@
-import 'package:covid19/ui/utils/style.dart';
+import 'package:covid19/features/presentation/utils/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

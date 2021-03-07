@@ -1,5 +1,4 @@
-
-import 'package:covid19/ui/utils/contants.dart';
+import 'package:covid19/features/presentation/utils/contants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -32,7 +31,7 @@ class InfoCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(8),
             ),
             child: SingleChildScrollView(
-                          child: Column(
+              child: Column(
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.all(10.0),
@@ -40,7 +39,7 @@ class InfoCard extends StatelessWidget {
                       children: <Widget>[
                         // wrapped within an expanded widget to allow for small density device
                         Expanded(
-                            child: Container(
+                          child: Container(
                             alignment: Alignment.center,
                             height: 30,
                             width: 30,
@@ -77,10 +76,12 @@ class InfoCard extends StatelessWidget {
                               children: [
                                 TextSpan(
                                   text: "$effectedNum \n",
-                                  style:
-                                      Theme.of(context).textTheme.headline6.copyWith(
-                                            fontWeight: FontWeight.bold,
-                                          ),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline6
+                                      .copyWith(
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                 ),
                                 TextSpan(
                                   text: "People",

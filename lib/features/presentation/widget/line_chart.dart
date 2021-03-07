@@ -1,5 +1,4 @@
-
-import 'package:covid19/ui/utils/contants.dart';
+import 'package:covid19/features/presentation/utils/contants.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 

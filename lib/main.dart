@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'ui/screen/home_screen.dart';
-import 'ui/utils/contants.dart';
+import 'features/presentation/screen/home_screen.dart';
+import 'features/presentation/utils/contants.dart';
 
 void main() {
   runApp(MyApp());

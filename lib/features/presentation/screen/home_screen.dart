@@ -1,6 +1,5 @@
-
-import 'package:covid19/ui/utils/contants.dart';
-import 'package:covid19/ui/widget/info_card.dart';
+import 'package:covid19/features/presentation/utils/contants.dart';
+import 'package:covid19/features/presentation/widget/info_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -11,14 +10,13 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(),
-
-//wrap singlechildscrollview for correct displaying in small density devices
       body: SingleChildScrollView(
-              child: Column(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Container(
-              padding: EdgeInsets.only(left: 20, top: 20, right: 20, bottom: 20),
+              padding:
+                  EdgeInsets.only(left: 20, top: 20, right: 20, bottom: 20),
               width: double.infinity,
               decoration: BoxDecoration(
                 color: cPrimaryColor.withOpacity(0.03),
@@ -208,8 +206,10 @@ class PreventitonCard extends StatelessWidget {
         SvgPicture.asset(svgSrc),
         Text(
           title,
-          style:
-              Theme.of(context).textTheme.bodyText1.copyWith(color: cPrimaryColor),
+          style: Theme.of(context)
+              .textTheme
+              .bodyText1
+              .copyWith(color: cPrimaryColor),
         )
       ],
     );

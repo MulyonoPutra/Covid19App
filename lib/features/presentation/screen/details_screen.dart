@@ -1,6 +1,5 @@
-
-import 'package:covid19/ui/utils/contants.dart';
-import 'package:covid19/ui/widget/weekly_chart.dart';
+import 'package:covid19/features/presentation/utils/contants.dart';
+import 'package:covid19/features/presentation/widget/weekly_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -13,7 +12,7 @@ class DetailsScreen extends StatelessWidget {
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20),
         child: SingleChildScrollView(
-                  child: Column(
+          child: Column(
             children: <Widget>[
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 25),
