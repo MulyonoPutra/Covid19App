@@ -1,35 +1,30 @@
 import 'dart:convert';
 
-import 'package:covid19/core/error/exceptions.dart';
 import 'package:covid19/features/data/models/main_model.dart';
+import 'package:covid19/features/data/repository/main_repository.dart';
 import 'package:http/http.dart' as http;
-import 'package:meta/meta.dart';
 
+class CovidAppRemoteDataSource extends MainRepository {
+  final endpoint = 'https://api.kawalcorona.com/indonesia';
 
-abstract class CovidAppRemoteDataSource {
-  Future<MainModel> getAllData();
-}
+  Future<List<Model>> getAllData() async {
+    final Map<String, String> _baseHeader = {
+      'Content-Type': 'application/json; charset=UTF-8',
+    };
 
-class CovidAppRemoteDataSourceImpl implements CovidAppRemoteDataSource {
-  
-
-
-  @override
-  Future<MainModel> getAllData() =>
-      _getDataFromUrl('https://api.kawalcorona.com/indonesia/provinsi');
-
-  Future<MainModel> _getDataFromUrl(String url) async {
     final response = await http.get(
-      url,
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      endpoint,
+      headers: _baseHeader,
     );
 
     if (response.statusCode == 200) {
-      return MainModel.fromJson(json.decode(response.body));
+      final MainModel res =
+          MainModel.fromJson({'result': jsonDecode(response.body)});
+      print(res.result.first.toJson());
+      print(response.body);
+      return res.result;
     } else {
-      throw ServerException();
+      throw Exception('Failed to fetchBranch');
     }
   }
 }

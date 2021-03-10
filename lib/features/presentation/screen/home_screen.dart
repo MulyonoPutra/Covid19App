@@ -17,8 +17,6 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     context.read<MainViewModel>().getAllDataIndonesia();
-    print('!!!!');
-    print(context.read<MainViewModel>().getPositif);
   }
 
   @override
@@ -47,25 +45,25 @@ class _HomeScreenState extends State<HomeScreen> {
                   InfoCard(
                     title: "Confirmed Cases",
                     iconColor: Color(0xFFFF8C00),
-                    effectedNum: context.read<MainViewModel>().getPositif,
+                    effectedNum: context.watch<MainViewModel>().getPositif,
                     press: () {},
                   ),
                   InfoCard(
                     title: "Total Deaths",
                     iconColor: Color(0xFFFF2D55),
-                    effectedNum: context.read<MainViewModel>().getPositif,
+                    effectedNum: context.watch<MainViewModel>().getMeninggal,
                     press: () {},
                   ),
                   InfoCard(
                     title: "Total Recovered",
                     iconColor: Color(0xFF50E3C2),
-                    effectedNum: context.read<MainViewModel>().getPositif,
+                    effectedNum: context.watch<MainViewModel>().getSembuh,
                     press: () {},
                   ),
                   InfoCard(
                     title: "New Cases",
                     iconColor: Color(0xFF5856D6),
-                    effectedNum: context.read<MainViewModel>().getPositif,
+                    effectedNum: context.watch<MainViewModel>().getPositif,
                     press: () {
                       Navigator.push(
                         context,
