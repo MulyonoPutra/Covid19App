@@ -11,16 +11,15 @@ abstract class CovidAppRemoteDataSource {
 }
 
 class CovidAppRemoteDataSourceImpl implements CovidAppRemoteDataSource {
-  final http.Client client;
+  
 
-  CovidAppRemoteDataSourceImpl({@required this.client});
 
   @override
   Future<MainModel> getAllData() =>
       _getDataFromUrl('https://api.kawalcorona.com/indonesia/provinsi');
 
   Future<MainModel> _getDataFromUrl(String url) async {
-    final response = await client.get(
+    final response = await http.get(
       url,
       headers: {
         'Content-Type': 'application/json',

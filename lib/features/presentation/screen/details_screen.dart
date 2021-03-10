@@ -7,7 +7,6 @@ class DetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomPadding: false,
       appBar: buildDetailsAppBar(context),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20),

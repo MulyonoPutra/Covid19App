@@ -6,7 +6,7 @@ import 'line_chart.dart';
 
 class InfoCard extends StatelessWidget {
   final String title;
-  final int effectedNum;
+  final String effectedNum;
   final Color iconColor;
   final Function press;
   const InfoCard({

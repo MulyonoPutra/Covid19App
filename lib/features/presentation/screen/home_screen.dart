@@ -1,11 +1,26 @@
 import 'package:covid19/features/presentation/utils/contants.dart';
+import 'package:covid19/features/presentation/view_model/main_view_model.dart';
 import 'package:covid19/features/presentation/widget/info_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 import 'details_screen.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<MainViewModel>().getAllDataIndonesia();
+    print('!!!!');
+    print(context.read<MainViewModel>().getPositif);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,25 +47,25 @@ class HomeScreen extends StatelessWidget {
                   InfoCard(
                     title: "Confirmed Cases",
                     iconColor: Color(0xFFFF8C00),
-                    effectedNum: 1062,
+                    effectedNum: context.read<MainViewModel>().getPositif,
                     press: () {},
                   ),
                   InfoCard(
                     title: "Total Deaths",
                     iconColor: Color(0xFFFF2D55),
-                    effectedNum: 75,
+                    effectedNum: context.read<MainViewModel>().getPositif,
                     press: () {},
                   ),
                   InfoCard(
                     title: "Total Recovered",
                     iconColor: Color(0xFF50E3C2),
-                    effectedNum: 689,
+                    effectedNum: context.read<MainViewModel>().getPositif,
                     press: () {},
                   ),
                   InfoCard(
                     title: "New Cases",
                     iconColor: Color(0xFF5856D6),
-                    effectedNum: 75,
+                    effectedNum: context.read<MainViewModel>().getPositif,
                     press: () {
                       Navigator.push(
                         context,
