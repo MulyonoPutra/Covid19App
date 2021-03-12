@@ -1,4 +1,5 @@
 import 'package:covid19/features/presentation/utils/contants.dart';
+import 'package:covid19/features/presentation/utils/style.dart';
 import 'package:covid19/features/presentation/view_model/main_view_model.dart';
 import 'package:covid19/features/presentation/widget/chart_widget.dart';
 import 'package:covid19/features/presentation/widget/info_card.dart';
@@ -28,6 +29,10 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
+            Center(
+              child: Text('Covid-19 Indonesia Live Data', style: titleStyle,),
+            ),
+            SizedBox(height: 10),
             _buildStatistic(),
             Container(
               padding:
@@ -176,9 +181,10 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(height: 5),
             Text(
               value,
-              style: Theme.of(context).textTheme.headline6.copyWith(
-                    fontWeight: FontWeight.bold, fontSize: 12
-                  ),
+              style: Theme.of(context)
+                  .textTheme
+                  .headline6
+                  .copyWith(fontWeight: FontWeight.bold, fontSize: 12),
             ),
             SizedBox(height: 10),
           ],

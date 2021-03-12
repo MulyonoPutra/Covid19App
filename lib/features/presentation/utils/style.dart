@@ -8,6 +8,14 @@ final titleStyle = TextStyle(
   fontWeight: FontWeight.bold
 );
 
+final homeTitleStyle = TextStyle(
+  color: Color(0xFF5B16D0),
+  fontFamily: 'Raleway',
+  fontSize: 20.0,
+  height: 1.5,
+  fontWeight: FontWeight.bold
+);
+
 final subtitleStyle = TextStyle(
   color: Color(0xFF5B16D0),
   fontSize: 18.0,
