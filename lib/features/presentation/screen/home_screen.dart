@@ -1,5 +1,6 @@
 import 'package:covid19/features/presentation/utils/contants.dart';
 import 'package:covid19/features/presentation/view_model/main_view_model.dart';
+import 'package:covid19/features/presentation/widget/chart_widget.dart';
 import 'package:covid19/features/presentation/widget/info_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -27,6 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
+            _buildStatistic(),
             Container(
               padding:
                   EdgeInsets.only(left: 20, top: 20, right: 20, bottom: 20),
@@ -103,6 +105,85 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildStatistic() {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.all(
+          Radius.circular(15),
+        ),
+        border: Border.all(color: Colors.white),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black12,
+            offset: Offset(1, 1),
+            spreadRadius: 1,
+            blurRadius: 1,
+          ),
+        ],
+      ),
+      margin: EdgeInsets.symmetric(horizontal: 16),
+      padding: EdgeInsets.all(24),
+      child: Center(
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Container(
+              width: 150,
+              height: 150,
+              child: DonutPieChart.withSampleData(),
+            ),
+            SizedBox(width: 25),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                _buildStatisticItem(Colors.blueAccent, "Confirmed",
+                    context.watch<MainViewModel>().getPositif),
+                _buildStatisticItem(Colors.yellowAccent, "Recovered",
+                    context.watch<MainViewModel>().getSembuh),
+                _buildStatisticItem(Colors.redAccent, "Deaths",
+                    context.watch<MainViewModel>().getMeninggal),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildStatisticItem(Color color, String title, String value) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: <Widget>[
+        // Icon(
+        //   FlutterIcons.label,
+        //   size: 50,
+        //   color: color,
+        // ),
+        Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              title,
+              style: TextStyle(
+                color: Colors.black38,
+              ),
+            ),
+            SizedBox(height: 5),
+            Text(
+              value,
+              style: Theme.of(context).textTheme.headline6.copyWith(
+                    fontWeight: FontWeight.bold, fontSize: 12
+                  ),
+            ),
+            SizedBox(height: 10),
+          ],
+        ),
+      ],
     );
   }
 
