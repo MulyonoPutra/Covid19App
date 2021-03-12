@@ -1,11 +1,12 @@
-import 'package:covid19/features/presentation/utils/contants.dart';
-import 'package:covid19/features/presentation/utils/style.dart';
-import 'package:covid19/features/presentation/view_model/main_view_model.dart';
-import 'package:covid19/features/presentation/widget/chart_widget.dart';
-import 'package:covid19/features/presentation/widget/info_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
+
+import '../utils/contants.dart';
+import '../utils/style.dart';
+import '../view_model/main_view_model.dart';
+import '../widget/chart_widget.dart';
+import '../widget/info_card.dart';
 
 import 'details_screen.dart';
 
@@ -30,7 +31,10 @@ class _HomeScreenState extends State<HomeScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Center(
-              child: Text('Covid-19 Indonesia Live Data', style: titleStyle,),
+              child: Text(
+                'Covid-19 Indonesia Live Data',
+                style: titleStyle,
+              ),
             ),
             SizedBox(height: 10),
             _buildStatistic(),

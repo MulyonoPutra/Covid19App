@@ -1,7 +1,7 @@
-import 'package:covid19/features/presentation/screen/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'features/presentation/screen/splash_screen.dart';
 import 'features/presentation/utils/contants.dart';
 import 'features/presentation/view_model/main_view_model.dart';
 
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: cBackgroundColor,
           textTheme:
               Theme.of(context).textTheme.apply(displayColor: cTextColor)),
-      home: OnboardingScreen(),
+      home: Splash(),
     );
   }
 }
