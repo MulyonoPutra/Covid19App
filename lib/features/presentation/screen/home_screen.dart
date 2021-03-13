@@ -30,12 +30,6 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Center(
-              child: Text(
-                'Covid-19 Indonesia Live Data',
-                style: homeTitleStyle,
-              ),
-            ),
             SizedBox(height: 10),
             _buildStatistic(),
             Container(
@@ -317,16 +311,13 @@ class _HomeScreenState extends State<HomeScreen> {
     return AppBar(
       backgroundColor: cPrimaryColor.withOpacity(.03),
       elevation: 0,
-      leading: IconButton(
-        icon: SvgPicture.asset("assets/icons/menu.svg"),
-        onPressed: () {},
-      ),
-      actions: <Widget>[
-        IconButton(
-          icon: SvgPicture.asset("assets/icons/search.svg"),
-          onPressed: () {},
+      centerTitle: true,
+      title: Center(
+        child: Text(
+          'Covid-19 Indonesia Live Data',
+          style: homeTitleStyle,
         ),
-      ],
+      ),
     );
   }
 }
