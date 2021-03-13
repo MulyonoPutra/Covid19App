@@ -2,7 +2,6 @@ import 'package:covid19/features/data/data_source/remote_data_source.dart';
 import 'package:flutter/material.dart';
 
 class MainViewModel extends ChangeNotifier {
-  
   String _positif = '';
 
   String _sembuh = '';
@@ -10,6 +9,8 @@ class MainViewModel extends ChangeNotifier {
   String _meninggal = '';
 
   String _dirawat = '';
+
+  
 
   String get getPositif => _positif;
   void setPositif(String value) {
@@ -43,5 +44,9 @@ class MainViewModel extends ChangeNotifier {
       _dirawat = value?.first?.dirawat;
       notifyListeners();
     });
+  }
+
+  getDataProvinsiIndonesia() async {
+    CovidAppRemoteDataSource().getDataProvinsi();
   }
 }

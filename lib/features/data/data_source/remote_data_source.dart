@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:covid19/features/data/models/main_model.dart';
+import 'package:covid19/features/data/models/provinsi_model.dart';
 import 'package:covid19/features/data/repository/main_repository.dart';
 import 'package:http/http.dart' as http;
 
@@ -23,6 +24,22 @@ class CovidAppRemoteDataSource extends MainRepository {
       print(res.result.first.toJson());
       print(response.body);
       return res.result;
+    } else {
+      throw Exception('Failed to fetchBranch');
+    }
+  }
+
+  Future<List<Attributes>> getDataProvinsi() async {
+    var response =
+        await http.get('https://api.kawalcorona.com/indonesia/provinsi');
+    print(response.statusCode);
+    print(response.body);
+
+    if (response.statusCode == 200) {
+      List data = jsonDecode(response.body);
+      List<Attributes> provinceData =
+          data.map((e) => Attributes.fromJson(e)).toList();
+      return provinceData;
     } else {
       throw Exception('Failed to fetchBranch');
     }

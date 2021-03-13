@@ -1,99 +1,50 @@
+import 'package:covid19/features/data/models/provinsi_model.dart';
 import 'package:covid19/features/presentation/utils/contants.dart';
-import 'package:covid19/features/presentation/widget/weekly_chart.dart';
+import 'package:covid19/features/presentation/view_model/main_view_model.dart';
+import 'package:covid19/features/presentation/widget/info_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 
-class DetailsScreen extends StatelessWidget {
+class DetailsScreen extends StatefulWidget {
+  @override
+  _DetailsScreenState createState() => _DetailsScreenState();
+}
+
+class _DetailsScreenState extends State<DetailsScreen> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<MainViewModel>().getDataProvinsiIndonesia();
+  }
+
   @override
   Widget build(BuildContext context) {
+    var province = context.read<MainViewModel>().getDataProvinsiIndonesia();
     return Scaffold(
       appBar: buildDetailsAppBar(context),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20),
         child: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 25),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(20),
-                  boxShadow: [
-                    BoxShadow(
-                      offset: Offset(0, 21),
-                      blurRadius: 53,
-                      color: Colors.black.withOpacity(0.05),
-                    ),
-                  ],
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    buildTitleWithMoreIcon(),
-                    SizedBox(height: 15),
-                    buildCaseNumber(context),
-                    SizedBox(height: 15),
-                    Text(
-                      "From Health Center",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w200,
-                        color: cTextMediumColor,
-                        fontSize: 16,
-                      ),
-                    ),
-                    SizedBox(height: 15),
-                    WeeklyChart(),
-                    SizedBox(height: 15),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        buildInfoTextWithPercentage(
-                          percentage: "6.43",
-                          title: "From Last Week",
-                        ),
-                        buildInfoTextWithPercentage(
-                          percentage: "9.43",
-                          title: "Recovery Rate",
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-              ),
-              SizedBox(height: 20),
-              Container(
-                padding: EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(20),
-                  boxShadow: [
-                    BoxShadow(
-                      offset: Offset(0, 21),
-                      blurRadius: 54,
-                      color: Colors.black.withOpacity(0.05),
-                    ),
-                  ],
-                ),
-                child: Column(
-                  children: <Widget>[
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Text(
-                          "Global Map",
-                          style: TextStyle(
-                            fontSize: 15,
-                          ),
-                        ),
-                        SvgPicture.asset("assets/icons/more.svg")
-                      ],
-                    ),
-                    SizedBox(height: 10),
-                    SvgPicture.asset("assets/icons/map.svg"),
-                  ],
-                ),
-              ),
-            ],
+          child: FutureBuilder(
+            future: province,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                List<Attributes> data = snapshot.data;
+                return Column(
+                  children: data.map((e) => InfoCard(
+                    
+                    title: "Total Recovered",
+                    iconColor: Color(0xFF50E3C2),
+                    effectedNum: context.watch<MainViewModel>().getSembuh,
+                    press: () {},
+                  ),).toList(),
+                );
+              }
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            },
           ),
         ),
       ),
