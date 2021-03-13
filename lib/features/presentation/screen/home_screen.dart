@@ -33,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Center(
               child: Text(
                 'Covid-19 Indonesia Live Data',
-                style: titleStyle,
+                style: homeTitleStyle,
               ),
             ),
             SizedBox(height: 10),
@@ -110,7 +110,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
-            )
+            ),
+            SizedBox(height: 12),
+            _globalMap(),
           ],
         ),
       ),
@@ -159,6 +161,41 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _globalMap() {
+    return Container(
+      padding: EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          BoxShadow(
+            offset: Offset(0, 21),
+            blurRadius: 54,
+            color: Colors.black.withOpacity(0.05),
+          ),
+        ],
+      ),
+      child: Column(
+        children: <Widget>[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text(
+                "Global Map",
+                style: TextStyle(
+                  fontSize: 15,
+                ),
+              ),
+              SvgPicture.asset("assets/icons/more.svg")
+            ],
+          ),
+          SizedBox(height: 10),
+          SvgPicture.asset("assets/icons/map.svg"),
+        ],
       ),
     );
   }
@@ -236,8 +273,8 @@ class _HomeScreenState extends State<HomeScreen> {
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  Color(0xFF60BE93),
-                  Color(0xFF1B8D59),
+                  Color(0xFF6D29E2),
+                  Color(0xFF5B16D0),
                 ],
               ),
               borderRadius: BorderRadius.circular(20),
