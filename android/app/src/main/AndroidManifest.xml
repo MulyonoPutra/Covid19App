@@ -2,7 +2,7 @@
     package="com.example.covid19">
     <uses-permission android:name="android.permission.INTERNET" />
    <application
-        android:label="covid19"
+        android:label="Covid-19 Live Data"
         android:usesCleartextTraffic="true"
         android:icon="@mipmap/ic_launcher">
         <activity
