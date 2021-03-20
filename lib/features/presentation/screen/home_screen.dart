@@ -1,3 +1,5 @@
+import 'package:covid19/features/presentation/screen/confirmed_case_screen.dart';
+import 'package:covid19/features/presentation/screen/total_recover_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
@@ -7,8 +9,7 @@ import '../utils/style.dart';
 import '../view_model/main_view_model.dart';
 import '../widget/chart_widget.dart';
 import '../widget/info_card.dart';
-
-import 'details_screen.dart';
+import 'total_death_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -20,6 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     context.read<MainViewModel>().getAllDataIndonesia();
+    context.read<MainViewModel>().getDataProvinsiIndonesia();
   }
 
   @override
@@ -43,45 +45,59 @@ class _HomeScreenState extends State<HomeScreen> {
                   bottomRight: Radius.circular(50),
                 ),
               ),
-              child: Wrap(
-                runSpacing: 20,
-                spacing: 20,
-                children: <Widget>[
-                  InfoCard(
-                    title: "Confirmed Cases",
-                    iconColor: Color(0xFFFF8C00),
-                    effectedNum: context.watch<MainViewModel>().getPositif,
-                    press: () {},
-                  ),
-                  InfoCard(
-                    title: "Total Deaths",
-                    iconColor: Color(0xFFFF2D55),
-                    effectedNum: context.watch<MainViewModel>().getMeninggal,
-                    press: () {},
-                  ),
-                  InfoCard(
-                    title: "Total Recovered",
-                    iconColor: Color(0xFF50E3C2),
-                    effectedNum: context.watch<MainViewModel>().getSembuh,
-                    press: () {},
-                  ),
-                  InfoCard(
-                    title: "New Cases",
-                    iconColor: Color(0xFF5856D6),
-                    effectedNum: context.watch<MainViewModel>().getPositif,
-                    press: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return DetailsScreen();
-                          },
-                        ),
-                      );
-                    },
-                  ),
-                ],
-              ),
+              child: Wrap(runSpacing: 20, spacing: 20, children: <Widget>[
+                InfoCard(
+                  title: "Confirmed Cases",
+                  iconColor: Color(0xFFFF8C00),
+                  effectedNum: context.watch<MainViewModel>().getPositif,
+                  press: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return ConfirmedCaseScreen();
+                        },
+                      ),
+                    );
+                  },
+                ),
+                InfoCard(
+                  title: "Total Deaths",
+                  iconColor: Color(0xFFFF2D55),
+                  effectedNum: context.watch<MainViewModel>().getMeninggal,
+                  press: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return TotalDeathScreen();
+                        },
+                      ),
+                    );
+                  },
+                ),
+                InfoCard(
+                  title: "Total Recovered",
+                  iconColor: Color(0xFF50E3C2),
+                  effectedNum: context.watch<MainViewModel>().getSembuh,
+                  press: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return TotalRecoverScreen();
+                        },
+                      ),
+                    );
+                  },
+                ),
+                InfoCard(
+                  title: "Total Treated",
+                  iconColor: Color(0xFF5856D6),
+                  effectedNum: context.watch<MainViewModel>().getDirawat,
+                  press: () {},
+                ),
+              ]),
             ),
             SizedBox(height: 20),
             Padding(
@@ -277,7 +293,7 @@ class _HomeScreenState extends State<HomeScreen> {
               text: TextSpan(
                 children: [
                   TextSpan(
-                    text: "Dial 999 for \nMedical Help!\n",
+                    text: "Dial 119 for \nMedical Help!\n",
                     style: Theme.of(context)
                         .textTheme
                         .headline6

@@ -1,17 +1,17 @@
-import 'package:covid19/features/data/models/provinsi_model.dart';
 import 'package:covid19/features/presentation/utils/contants.dart';
+import 'package:covid19/features/presentation/utils/style.dart';
 import 'package:covid19/features/presentation/view_model/main_view_model.dart';
-import 'package:covid19/features/presentation/widget/info_card.dart';
+import 'package:covid19/features/presentation/widget/detail_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
-class DetailsScreen extends StatefulWidget {
+class TotalRecoverScreen extends StatefulWidget {
   @override
-  _DetailsScreenState createState() => _DetailsScreenState();
+  _TotalRecoverScreenState createState() => _TotalRecoverScreenState();
 }
 
-class _DetailsScreenState extends State<DetailsScreen> {
+class _TotalRecoverScreenState extends State<TotalRecoverScreen> {
   @override
   void initState() {
     super.initState();
@@ -20,33 +20,67 @@ class _DetailsScreenState extends State<DetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var province = context.read<MainViewModel>().getDataProvinsiIndonesia();
+    var data = context.watch<MainViewModel>().getProvinsi;
+
     return Scaffold(
-      appBar: buildDetailsAppBar(context),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20),
-        child: SingleChildScrollView(
-          child: FutureBuilder(
-            future: province,
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                List<Attributes> data = snapshot.data;
-                return Column(
-                  children: data.map((e) => InfoCard(
-                    
-                    title: "Total Recovered",
-                    iconColor: Color(0xFF50E3C2),
-                    effectedNum: context.watch<MainViewModel>().getSembuh,
-                    press: () {},
-                  ),).toList(),
-                );
-              }
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            },
-          ),
+      appBar: buildAppBar(),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            SizedBox(height: 10),
+            Container(
+              padding:
+                  EdgeInsets.only(left: 20, top: 20, right: 20, bottom: 20),
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: cPrimaryColor.withOpacity(0.03),
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(50),
+                  bottomRight: Radius.circular(50),
+                ),
+              ),
+              child: Wrap(
+                  runSpacing: 20,
+                  spacing: 20,
+                  children: data.map((e) {
+                    return DetailCard(
+                      title: e.attributes.provinsi,
+                      effectedNum: e.attributes.kasusSemb.toString(),
+                      press: () {},
+                    );
+                  }).toList()),
+            ),
+            SizedBox(height: 20),
+          ],
         ),
+      ),
+    );
+  }
+
+  AppBar buildAppBar() {
+    return AppBar(
+      backgroundColor: cPrimaryColor.withOpacity(.03),
+      elevation: 0,
+      centerTitle: false,
+      leadingWidth: 0 ,
+      title: Center(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              'Total Recover',
+              style: homeTitleStyle,
+            ),
+          ],
+        ),
+      ),
+      leading: new IconButton(
+        icon: new Icon(Icons.arrow_back, size: 30, color: Color(0xFF5856D6)),
+        onPressed: () {
+          return Navigator.pop(context);
+        },
       ),
     );
   }

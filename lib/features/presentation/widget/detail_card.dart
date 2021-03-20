@@ -1,19 +1,16 @@
 import 'package:covid19/features/presentation/utils/contants.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import 'line_chart.dart';
 
-class InfoCard extends StatelessWidget {
+class DetailCard extends StatelessWidget {
   final String title;
   final String effectedNum;
-  final Color iconColor;
   final Function press;
-  const InfoCard({
+  const DetailCard({
     Key key,
     this.title,
     this.effectedNum,
-    this.iconColor,
     this.press,
   }) : super(key: key);
 
@@ -38,28 +35,14 @@ class InfoCard extends StatelessWidget {
                     child: Row(
                       children: <Widget>[
                         // wrapped within an expanded widget to allow for small density device
-                        Expanded(
-                          child: Container(
-                            alignment: Alignment.center,
-                            height: 30,
-                            width: 30,
-                            decoration: BoxDecoration(
-                              color: iconColor.withOpacity(0.12),
-                              shape: BoxShape.circle,
-                            ),
-                            child: SvgPicture.asset(
-                              "assets/icons/running.svg",
-                              height: 12,
-                              width: 12,
-                              color: iconColor,
-                            ),
-                          ),
-                        ),
+                        
                         SizedBox(width: 5),
-                        Text(
-                          title,
-                          maxLines: 1,
-                          overflow: TextOverflow.fade,
+                        Flexible(
+                          child: Text(
+                            title,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         )
                       ],
                     ),
@@ -76,6 +59,7 @@ class InfoCard extends StatelessWidget {
                               children: [
                                 TextSpan(
                                   text: "$effectedNum \n",
+                                  
                                   style: Theme.of(context)
                                       .textTheme
                                       .headline6
