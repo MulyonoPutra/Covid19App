@@ -1,4 +1,5 @@
 import 'package:covid19/features/data/data_source/remote_data_source.dart';
+import 'package:covid19/features/data/models/province_data_model.dart';
 import 'package:flutter/material.dart';
 
 class MainViewModel extends ChangeNotifier {
@@ -10,7 +11,21 @@ class MainViewModel extends ChangeNotifier {
 
   String _dirawat = '';
 
-  
+  List<DataProvince> _provinsi = [];
+
+  String _provinsiData = '';
+
+  List<DataProvince> get getProvinsi => _provinsi;
+  void setProvinsi(List value) {
+    _provinsi = value;
+    notifyListeners();
+  }
+
+  String get getProvinsiData => _provinsiData;
+  void setProvinsiData(String value) {
+    _provinsiData = value;
+    notifyListeners();
+  }
 
   String get getPositif => _positif;
   void setPositif(String value) {
@@ -47,6 +62,10 @@ class MainViewModel extends ChangeNotifier {
   }
 
   getDataProvinsiIndonesia() async {
-    CovidAppRemoteDataSource().getDataProvinsi();
+    CovidAppRemoteDataSource().getDataProvinsi().then((value) {
+      _provinsi = value;
+      print(_provinsi.map((e) => e.attributes.toJson()).toList());
+    });
+    notifyListeners();
   }
 }
