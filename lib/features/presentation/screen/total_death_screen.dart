@@ -1,6 +1,7 @@
 import 'package:covid19/features/presentation/utils/contants.dart';
 import 'package:covid19/features/presentation/utils/style.dart';
 import 'package:covid19/features/presentation/view_model/main_view_model.dart';
+import 'package:covid19/features/presentation/widget/app_bar.dart';
 import 'package:covid19/features/presentation/widget/detail_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -23,7 +24,15 @@ class _TotalDeathScreenState extends State<TotalDeathScreen> {
     var data = context.watch<MainViewModel>().getProvinsi;
 
     return Scaffold(
-      appBar: buildAppBar(),
+      appBar: buildAppBar(
+        "Total Death",
+        IconButton(
+          icon: new Icon(Icons.arrow_back, size: 30, color: Color(0xFF5856D6)),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -58,32 +67,7 @@ class _TotalDeathScreenState extends State<TotalDeathScreen> {
     );
   }
 
-  AppBar buildAppBar() {
-    return AppBar(
-      backgroundColor: cPrimaryColor.withOpacity(.03),
-      elevation: 0,
-      centerTitle: false,
-      leadingWidth: 0,
-      title: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              'Total Death',
-              style: homeTitleStyle,
-            ),
-          ],
-        ),
-      ),
-      leading: new IconButton(
-        icon: new Icon(Icons.arrow_back, size: 30, color: Color(0xFF5856D6)),
-        onPressed: () {
-          return Navigator.pop(context);
-        },
-      ),
-    );
-  }
+
 
   RichText buildInfoTextWithPercentage({String title, String percentage}) {
     return RichText(

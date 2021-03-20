@@ -1,6 +1,7 @@
 import 'package:covid19/features/presentation/utils/contants.dart';
 import 'package:covid19/features/presentation/utils/style.dart';
 import 'package:covid19/features/presentation/view_model/main_view_model.dart';
+import 'package:covid19/features/presentation/widget/app_bar.dart';
 import 'package:covid19/features/presentation/widget/detail_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -18,12 +19,22 @@ class _TotalRecoverScreenState extends State<TotalRecoverScreen> {
     context.read<MainViewModel>().getDataProvinsiIndonesia();
   }
 
+  void _onBackButton() {
+    Navigator.of(context).pop();
+  }
+
   @override
   Widget build(BuildContext context) {
     var data = context.watch<MainViewModel>().getProvinsi;
 
     return Scaffold(
-      appBar: buildAppBar(),
+      appBar: buildAppBar(
+        "Total Recover",
+        IconButton(
+            icon:
+                new Icon(Icons.arrow_back, size: 30, color: Color(0xFF5856D6)),
+            onPressed: () => _onBackButton()),
+      ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -54,33 +65,6 @@ class _TotalRecoverScreenState extends State<TotalRecoverScreen> {
             SizedBox(height: 20),
           ],
         ),
-      ),
-    );
-  }
-
-  AppBar buildAppBar() {
-    return AppBar(
-      backgroundColor: cPrimaryColor.withOpacity(.03),
-      elevation: 0,
-      centerTitle: false,
-      leadingWidth: 0 ,
-      title: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              'Total Recover',
-              style: homeTitleStyle,
-            ),
-          ],
-        ),
-      ),
-      leading: new IconButton(
-        icon: new Icon(Icons.arrow_back, size: 30, color: Color(0xFF5856D6)),
-        onPressed: () {
-          return Navigator.pop(context);
-        },
       ),
     );
   }

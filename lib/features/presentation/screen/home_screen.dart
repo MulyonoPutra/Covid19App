@@ -1,11 +1,11 @@
 import 'package:covid19/features/presentation/screen/confirmed_case_screen.dart';
 import 'package:covid19/features/presentation/screen/total_recover_screen.dart';
+import 'package:covid19/features/presentation/widget/app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 import '../utils/contants.dart';
-import '../utils/style.dart';
 import '../view_model/main_view_model.dart';
 import '../widget/chart_widget.dart';
 import '../widget/info_card.dart';
@@ -27,7 +27,15 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(),
+      appBar: buildAppBar(
+        "Covid-19 Indonesia Live Data",
+        IconButton(
+          icon: new Icon(Icons.arrow_back, size: 30, color: Color(0xFFFFFFFF)),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -323,19 +331,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  AppBar buildAppBar() {
-    return AppBar(
-      backgroundColor: cPrimaryColor.withOpacity(.03),
-      elevation: 0,
-      centerTitle: true,
-      title: Center(
-        child: Text(
-          'Covid-19 Indonesia Live Data',
-          style: homeTitleStyle,
-        ),
-      ),
-    );
-  }
+
 }
 
 class PreventitonCard extends StatelessWidget {
