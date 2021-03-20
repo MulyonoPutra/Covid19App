@@ -1,5 +1,4 @@
 import 'package:covid19/features/presentation/utils/contants.dart';
-import 'package:covid19/features/presentation/utils/style.dart';
 import 'package:covid19/features/presentation/view_model/main_view_model.dart';
 import 'package:covid19/features/presentation/widget/app_bar.dart';
 import 'package:covid19/features/presentation/widget/detail_card.dart';
@@ -66,7 +65,6 @@ class _ConfirmedCaseScreenState extends State<ConfirmedCaseScreen> {
       ),
     );
   }
-
 
   RichText buildInfoTextWithPercentage({String title, String percentage}) {
     return RichText(

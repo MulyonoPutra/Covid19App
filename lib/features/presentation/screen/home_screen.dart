@@ -1,6 +1,8 @@
 import 'package:covid19/features/presentation/screen/confirmed_case_screen.dart';
 import 'package:covid19/features/presentation/screen/total_recover_screen.dart';
 import 'package:covid19/features/presentation/widget/app_bar.dart';
+import 'package:covid19/features/presentation/widget/global_map_widget.dart';
+import 'package:covid19/features/presentation/widget/prevention_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
@@ -130,7 +132,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             SizedBox(height: 12),
-            _globalMap(),
+            globalMap(),
           ],
         ),
       ),
@@ -179,41 +181,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
         ),
-      ),
-    );
-  }
-
-  Widget _globalMap() {
-    return Container(
-      padding: EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-            offset: Offset(0, 21),
-            blurRadius: 54,
-            color: Colors.black.withOpacity(0.05),
-          ),
-        ],
-      ),
-      child: Column(
-        children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text(
-                "Global Map",
-                style: TextStyle(
-                  fontSize: 15,
-                ),
-              ),
-              SvgPicture.asset("assets/icons/more.svg")
-            ],
-          ),
-          SizedBox(height: 10),
-          SvgPicture.asset("assets/icons/map.svg"),
-        ],
       ),
     );
   }
@@ -328,34 +295,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-    );
-  }
-
-
-}
-
-class PreventitonCard extends StatelessWidget {
-  final String svgSrc;
-  final String title;
-  const PreventitonCard({
-    Key key,
-    this.svgSrc,
-    this.title,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        SvgPicture.asset(svgSrc),
-        Text(
-          title,
-          style: Theme.of(context)
-              .textTheme
-              .bodyText1
-              .copyWith(color: cPrimaryColor),
-        )
-      ],
     );
   }
 }

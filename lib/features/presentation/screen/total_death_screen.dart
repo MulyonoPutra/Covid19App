@@ -1,5 +1,4 @@
 import 'package:covid19/features/presentation/utils/contants.dart';
-import 'package:covid19/features/presentation/utils/style.dart';
 import 'package:covid19/features/presentation/view_model/main_view_model.dart';
 import 'package:covid19/features/presentation/widget/app_bar.dart';
 import 'package:covid19/features/presentation/widget/detail_card.dart';
@@ -67,8 +66,6 @@ class _TotalDeathScreenState extends State<TotalDeathScreen> {
     );
   }
 
-
-
   RichText buildInfoTextWithPercentage({String title, String percentage}) {
     return RichText(
       text: TextSpan(
@@ -124,28 +121,6 @@ class _TotalDeathScreenState extends State<TotalDeathScreen> {
           ),
         ),
         SvgPicture.asset("assets/icons/more.svg")
-      ],
-    );
-  }
-
-  AppBar buildDetailsAppBar(BuildContext context) {
-    return AppBar(
-      backgroundColor: cBackgroundColor,
-      elevation: 0,
-      leading: IconButton(
-        icon: Icon(
-          Icons.arrow_back_ios,
-          color: cPrimaryColor,
-        ),
-        onPressed: () {
-          Navigator.pop(context);
-        },
-      ),
-      actions: <Widget>[
-        IconButton(
-          icon: SvgPicture.asset("assets/icons/search.svg"),
-          onPressed: () {},
-        ),
       ],
     );
   }
