@@ -1,6 +1,6 @@
 # Covid-19 Indonesia Live Data
 
-A new Flutter project. Simple App, Just for learn. 
+A new Flutter project. Build using Dart & Flutter.
 
 Thanks to:
 - https://kawalcorona.com/
