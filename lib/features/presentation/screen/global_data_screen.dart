@@ -6,12 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
-class HospitalReference extends StatefulWidget {
+class GlobalDataScreen extends StatefulWidget {
   @override
-  _HospitalReferenceState createState() => _HospitalReferenceState();
+  _GlobalDataScreenState createState() => _GlobalDataScreenState();
 }
 
-class _HospitalReferenceState extends State<HospitalReference> {
+class _GlobalDataScreenState extends State<GlobalDataScreen> {
   @override
   void initState() {
     super.initState();
@@ -24,7 +24,7 @@ class _HospitalReferenceState extends State<HospitalReference> {
 
     return Scaffold(
       appBar: buildAppBar(
-        "Hospital Reference",
+        "Global Data",
         IconButton(
           icon: new Icon(Icons.arrow_back, size: 30, color: Color(0xFF5856D6)),
           onPressed: () {

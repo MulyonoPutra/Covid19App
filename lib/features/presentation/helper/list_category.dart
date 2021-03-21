@@ -6,26 +6,26 @@ List<CategorieModel> getCategories() {
 
   //1
   categorieModel = new CategorieModel();
-  categorieModel.categorieName = "Business";
+  categorieModel.categorieName = "Hospital Reference";
   categorieModel.route = PathRouter.hospitalReference;
   categorieModel.imageAssetUrl =
-      "https://images.unsplash.com/photo-1507679799987-c73779587ccf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80";
+      "https://img.jakpost.net/c/2020/06/18/2020_06_18_98017_1592417119._large.jpg";
   myCategories.add(categorieModel);
 
   //2
   categorieModel = new CategorieModel();
-  categorieModel.categorieName = "Entertainment";
+  categorieModel.categorieName = "Vaccine Data";
   categorieModel.route = PathRouter.totalDeath;
   categorieModel.imageAssetUrl =
-      "https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80";
+      "https://s.france24.com/media/display/f5f5d498-8a2b-11ea-8e3a-005056bff430/w:1280/p:4x3/290420-vaccin-covid-oxford-m.JPG";
   myCategories.add(categorieModel);
 
   //3
   categorieModel = new CategorieModel();
-  categorieModel.categorieName = "General";
+  categorieModel.categorieName = "Global Data";
   categorieModel.route = PathRouter.totalRecover;
   categorieModel.imageAssetUrl =
-      "https://images.unsplash.com/photo-1495020689067-958852a7765e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60";
+      "https://army.wiser.my/wp-content/uploads/2020/03/4GSNKJPTVNEO3FOPFDPZ3DTWSM.jpg";
   myCategories.add(categorieModel);
 
   return myCategories;

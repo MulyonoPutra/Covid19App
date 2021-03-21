@@ -21,6 +21,7 @@ class CategoryCard extends StatelessWidget {
                 imageAssetUrl,
                 height: 60,
                 width: 120,
+                fit: BoxFit.cover,
               ),
             ),
             Container(
