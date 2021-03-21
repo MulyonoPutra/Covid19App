@@ -1,6 +1,8 @@
+import 'package:covid19/features/presentation/helper/list_category.dart';
 import 'package:covid19/features/presentation/screen/confirmed_case_screen.dart';
 import 'package:covid19/features/presentation/screen/total_recover_screen.dart';
 import 'package:covid19/features/presentation/widget/app_bar.dart';
+import 'package:covid19/features/presentation/widget/category_card.dart';
 import 'package:covid19/features/presentation/widget/global_map_widget.dart';
 import 'package:covid19/features/presentation/widget/prevention_card.dart';
 import 'package:flutter/material.dart';
@@ -19,11 +21,15 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
+  List<CategorieModel> categories = <CategorieModel>[];
+  
   @override
   void initState() {
     super.initState();
     context.read<MainViewModel>().getAllDataIndonesia();
     context.read<MainViewModel>().getDataProvinsiIndonesia();
+    categories = getCategories();
   }
 
   @override
@@ -42,6 +48,20 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
+              Container(
+                        padding: EdgeInsets.symmetric(horizontal: 16),
+                        height: 70,
+                        child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: categories.length,
+                            itemBuilder: (context, index) {
+                              return CategoryCard(
+                                imageAssetUrl: categories[index].imageAssetUrl,
+                                categoryName: categories[index].categorieName,
+                                route: categories[index].route,
+                              );
+                            }),
+                      ),
             SizedBox(height: 10),
             _buildStatistic(),
             Container(
