@@ -20,8 +20,6 @@ class _VaccineTargetScreenState extends State<VaccineTargetScreen> {
 
   @override
   Widget build(BuildContext context) {
-   // var data = context.watch<VaccineDataViewModel>().getProvinsi;
-
     return Scaffold(
       appBar: buildAppBar(
         "Vaccine Target Data",
@@ -37,7 +35,7 @@ class _VaccineTargetScreenState extends State<VaccineTargetScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             SizedBox(height: 10),
-                        Container(
+            Container(
               padding:
                   EdgeInsets.only(left: 20, top: 20, right: 20, bottom: 20),
               width: double.infinity,
@@ -51,31 +49,43 @@ class _VaccineTargetScreenState extends State<VaccineTargetScreen> {
               child: Wrap(runSpacing: 20, spacing: 20, children: <Widget>[
                 DetailCard(
                   title: "Total Target",
-                  effectedNum: context.watch<VaccineDataViewModel>().getTotal.toString(),
-                  press: () {
-                  },
+                  effectedNum: f.format(
+                      context.watch<VaccineDataViewModel>().getTotal.truncate()
+                        ..toString()),
+                  press: () {},
                 ),
                 DetailCard(
                   title: "Health Human Resources",
-                  effectedNum: context.watch<VaccineDataViewModel>().getSumberDayaManusiaKesehatan.toString(),
-                  press: () {
-                  },
+                  effectedNum: f.format(context
+                      .watch<VaccineDataViewModel>()
+                      .getSumberDayaManusiaKesehatan
+                      .truncate()
+                        ..toString()),
+                  press: () {},
                 ),
                 DetailCard(
                   title: "Elderly",
-                  effectedNum: context.watch<VaccineDataViewModel>().getLansia.toString(),
-                  press: () {
-                  },
+                  effectedNum: f.format(
+                      context.watch<VaccineDataViewModel>().getLansia.truncate()
+                        ..toString()),
+                  press: () {},
                 ),
                 DetailCard(
                   title: "Public Officer",
-                  effectedNum: context.watch<VaccineDataViewModel>().getPetugasPublik.toString(),
-                  press: () {
-                  },
+                  effectedNum: f.format(context
+                      .watch<VaccineDataViewModel>()
+                      .getPetugasPublik
+                      .truncate()
+                        ..toString()),
+                  press: () {},
                 ),
                 DetailCard(
                   title: "Vaccination",
-                  effectedNum: context.watch<VaccineDataViewModel>().getVaksinasi.toString(),
+                  effectedNum: f.format(context
+                      .watch<VaccineDataViewModel>()
+                      .getVaksinasi
+                      .truncate()
+                        ..toString()),
                   press: () {},
                 ),
               ]),
