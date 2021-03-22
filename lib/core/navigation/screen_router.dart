@@ -2,7 +2,6 @@ import 'package:covid19/core/navigation/path_router.dart';
 import 'package:covid19/features/presentation/screen/confirmed_case_screen.dart';
 import 'package:covid19/features/presentation/screen/global_data_screen.dart';
 import 'package:covid19/features/presentation/screen/home_screen.dart';
-import 'package:covid19/features/presentation/screen/hospital_reference_screen.dart';
 import 'package:covid19/features/presentation/screen/total_death_screen.dart';
 import 'package:covid19/features/presentation/screen/total_recover_screen.dart';
 import 'package:covid19/features/presentation/screen/vaccine_target_screen.dart';
@@ -11,14 +10,6 @@ import 'package:flutter/material.dart';
 class ScreenRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case PathRouter.hospitalReference:
-        return PageRouteBuilder(
-            settings: settings,
-            pageBuilder: (context, animation, secondaryAnimation) =>
-                HospitalReference(),
-            transitionsBuilder:
-                (context, animation, secondaryAnimation, child) => child);
-
       case PathRouter.confirmedCases:
         return PageRouteBuilder(
             settings: settings,

@@ -1,5 +1,5 @@
 import 'package:covid19/features/presentation/utils/contants.dart';
-import 'package:covid19/features/presentation/view_model/main_view_model.dart';
+import 'package:covid19/features/presentation/view_model/vaccine_data_view_model.dart';
 import 'package:covid19/features/presentation/widget/app_bar.dart';
 import 'package:covid19/features/presentation/widget/detail_card.dart';
 import 'package:flutter/material.dart';
@@ -15,12 +15,12 @@ class _VaccineTargetScreenState extends State<VaccineTargetScreen> {
   @override
   void initState() {
     super.initState();
-    context.read<MainViewModel>().getDataProvinsiIndonesia();
+    context.read<VaccineDataViewModel>().getAllVaccineData();
   }
 
   @override
   Widget build(BuildContext context) {
-    var data = context.watch<MainViewModel>().getProvinsi;
+   // var data = context.watch<VaccineDataViewModel>().getProvinsi;
 
     return Scaffold(
       appBar: buildAppBar(
@@ -37,7 +37,7 @@ class _VaccineTargetScreenState extends State<VaccineTargetScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             SizedBox(height: 10),
-            Container(
+                        Container(
               padding:
                   EdgeInsets.only(left: 20, top: 20, right: 20, bottom: 20),
               width: double.infinity,
@@ -48,16 +48,37 @@ class _VaccineTargetScreenState extends State<VaccineTargetScreen> {
                   bottomRight: Radius.circular(50),
                 ),
               ),
-              child: Wrap(
-                  runSpacing: 20,
-                  spacing: 20,
-                  children: data.map((e) {
-                    return DetailCard(
-                      title: e.attributes.provinsi,
-                      effectedNum: e.attributes.kasusMeni.toString(),
-                      press: () {},
-                    );
-                  }).toList()),
+              child: Wrap(runSpacing: 20, spacing: 20, children: <Widget>[
+                DetailCard(
+                  title: "Total Target",
+                  effectedNum: context.watch<VaccineDataViewModel>().getTotal.toString(),
+                  press: () {
+                  },
+                ),
+                DetailCard(
+                  title: "Health Human Resources",
+                  effectedNum: context.watch<VaccineDataViewModel>().getSumberDayaManusiaKesehatan.toString(),
+                  press: () {
+                  },
+                ),
+                DetailCard(
+                  title: "Elderly",
+                  effectedNum: context.watch<VaccineDataViewModel>().getLansia.toString(),
+                  press: () {
+                  },
+                ),
+                DetailCard(
+                  title: "Public Officer",
+                  effectedNum: context.watch<VaccineDataViewModel>().getPetugasPublik.toString(),
+                  press: () {
+                  },
+                ),
+                DetailCard(
+                  title: "Vaccination",
+                  effectedNum: context.watch<VaccineDataViewModel>().getVaksinasi.toString(),
+                  press: () {},
+                ),
+              ]),
             ),
             SizedBox(height: 20),
           ],

@@ -59,7 +59,7 @@ class InfoCard extends StatelessWidget {
                         Text(
                           title,
                           maxLines: 1,
-                          overflow: TextOverflow.fade,
+                          overflow: TextOverflow.ellipsis,
                         )
                       ],
                     ),

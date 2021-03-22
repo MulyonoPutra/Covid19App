@@ -6,13 +6,17 @@ import 'core/navigation/screen_router.dart';
 import 'features/presentation/screen/splash_screen.dart';
 import 'features/presentation/utils/contants.dart';
 import 'features/presentation/view_model/main_view_model.dart';
+import 'features/presentation/view_model/vaccine_data_view_model.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
     statusBarColor: Colors.transparent, // transparent status bar
   ));
   runApp(MultiProvider(
-    providers: [ChangeNotifierProvider(create: (_) => MainViewModel())],
+    providers: [
+      ChangeNotifierProvider(create: (_) => MainViewModel()),
+      ChangeNotifierProvider(create: (_) => VaccineDataViewModel())
+    ],
     child: MyApp(),
   ));
 }

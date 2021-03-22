@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:covid19/features/data/models/main_model.dart';
 import 'package:covid19/features/data/models/province_data_model.dart';
+import 'package:covid19/features/data/models/vaccine_model.dart';
 import 'package:covid19/features/data/repository/main_repository.dart';
 import 'package:http/http.dart' as http;
 
@@ -35,7 +36,20 @@ class CovidAppRemoteDataSource extends MainRepository {
       print(res.map((e) => e.attributes.toJson()).toList());
       return res;
     } else {
-      throw Exception('Failed to fetchBranch');
+      throw Exception('Failed');
+    }
+  }
+
+  Future<VaccineTargetModel> getVaccineTarget() async {
+    var response =
+        await http.get('https://vaksincovid19-api.now.sh/api/vaksin');
+
+    if (response.statusCode == 200) {
+      final VaccineTargetModel res =
+          VaccineTargetModel.fromJson(jsonDecode(response.body));
+      return res;
+    } else {
+      throw Exception('Failed');
     }
   }
 }
