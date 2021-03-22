@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'core/navigation/screen_router.dart';
 import 'features/presentation/screen/splash_screen.dart';
 import 'features/presentation/utils/contants.dart';
+import 'features/presentation/view_model/global_data_view_model.dart';
 import 'features/presentation/view_model/main_view_model.dart';
 import 'features/presentation/view_model/vaccine_data_view_model.dart';
 
@@ -15,7 +16,8 @@ void main() {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (_) => MainViewModel()),
-      ChangeNotifierProvider(create: (_) => VaccineDataViewModel())
+      ChangeNotifierProvider(create: (_) => VaccineDataViewModel()),
+      ChangeNotifierProvider(create: (_) => GlobalDataViewModel())
     ],
     child: MyApp(),
   ));

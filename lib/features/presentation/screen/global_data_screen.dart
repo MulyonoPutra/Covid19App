@@ -1,5 +1,5 @@
 import 'package:covid19/features/presentation/utils/contants.dart';
-import 'package:covid19/features/presentation/view_model/main_view_model.dart';
+import 'package:covid19/features/presentation/view_model/global_data_view_model.dart';
 import 'package:covid19/features/presentation/widget/app_bar.dart';
 import 'package:covid19/features/presentation/widget/detail_card.dart';
 import 'package:flutter/material.dart';
@@ -15,12 +15,12 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
   @override
   void initState() {
     super.initState();
-    context.read<MainViewModel>().getDataProvinsiIndonesia();
+    context.read<GlobalDataViewModel>().getAllGlobalData();
   }
 
   @override
   Widget build(BuildContext context) {
-    var data = context.watch<MainViewModel>().getProvinsi;
+    var data = context.watch<GlobalDataViewModel>().getGlobalList;
 
     return Scaffold(
       appBar: buildAppBar(
@@ -53,8 +53,8 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
                   spacing: 20,
                   children: data.map((e) {
                     return DetailCard(
-                      title: e.attributes.provinsi,
-                      effectedNum: e.attributes.kasusMeni.toString(),
+                      title: e?.countryRegion.toString(),
+                      effectedNum: e?.confirmed.toString(),
                       press: () {},
                     );
                   }).toList()),

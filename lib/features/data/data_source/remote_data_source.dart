@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:covid19/features/data/models/global_data_model.dart';
 import 'package:covid19/features/data/models/main_model.dart';
 import 'package:covid19/features/data/models/province_data_model.dart';
 import 'package:covid19/features/data/models/vaccine_model.dart';
@@ -34,6 +35,19 @@ class CovidAppRemoteDataSource extends MainRepository {
     if (response.statusCode == 200) {
       final List<DataProvince> res = dataProvinceFromJson(response.body);
       print(res.map((e) => e.attributes.toJson()).toList());
+      return res;
+    } else {
+      throw Exception('Failed');
+    }
+  }
+
+  Future<List<GlobalDataModel>> getGlobalData() async {
+    var response =
+        await http.get('https://covid19.mathdro.id/api/confirmed');
+    if (response.statusCode == 200) {
+      final List<GlobalDataModel> res = globalDataModelFromJson(response.body);
+      //print(res.map((e) => e.attributes.toJson()).toList());
+      print(res.map((e) => e.countryRegion));
       return res;
     } else {
       throw Exception('Failed');

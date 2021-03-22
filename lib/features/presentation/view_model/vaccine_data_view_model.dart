@@ -13,7 +13,7 @@ class VaccineDataViewModel extends ChangeNotifier {
 
   int _total = 0;
 
-  // Just Getter, no setter.
+  // Just Getter, no Setter.
   int get getSumberDayaManusiaKesehatan => _sumberDayaManusiaKesehatan;
   int get getLansia => _lansia;
   int get getPetugasPublik => _petugasPublik;
