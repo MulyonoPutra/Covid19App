@@ -34,37 +34,39 @@ class _TotalRecoverScreenState extends State<TotalRecoverScreen> {
                 new Icon(Icons.arrow_back, size: 30, color: Color(0xFF5856D6)),
             onPressed: () => _onBackButton()),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            SizedBox(height: 10),
-            Container(
-              padding:
-                  EdgeInsets.only(left: 20, top: 20, right: 20, bottom: 20),
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: cPrimaryColor.withOpacity(0.03),
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(50),
-                  bottomRight: Radius.circular(50),
-                ),
+      body: data != null && context.watch<MainViewModel>().isLoading
+          ? SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  SizedBox(height: 10),
+                  Container(
+                    padding: EdgeInsets.only(
+                        left: 20, top: 20, right: 20, bottom: 20),
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: cPrimaryColor.withOpacity(0.03),
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(50),
+                        bottomRight: Radius.circular(50),
+                      ),
+                    ),
+                    child: Wrap(
+                        runSpacing: 20,
+                        spacing: 20,
+                        children: data.map((e) {
+                          return DetailCard(
+                            title: e.attributes.provinsi,
+                            effectedNum: e.attributes.kasusSemb.toString(),
+                            press: () {},
+                          );
+                        }).toList()),
+                  ),
+                  SizedBox(height: 20),
+                ],
               ),
-              child: Wrap(
-                  runSpacing: 20,
-                  spacing: 20,
-                  children: data.map((e) {
-                    return DetailCard(
-                      title: e.attributes.provinsi,
-                      effectedNum: e.attributes.kasusSemb.toString(),
-                      press: () {},
-                    );
-                  }).toList()),
-            ),
-            SizedBox(height: 20),
-          ],
-        ),
-      ),
+            )
+          : Center(child: CircularProgressIndicator()),
     );
   }
 
@@ -126,5 +128,4 @@ class _TotalRecoverScreenState extends State<TotalRecoverScreen> {
       ],
     );
   }
-
 }

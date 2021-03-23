@@ -20,6 +20,7 @@ class _VaccineTargetScreenState extends State<VaccineTargetScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var data = context.read<VaccineDataViewModel>().getAllVaccineData();
     return Scaffold(
       appBar: buildAppBar(
         "Vaccine Target Data",
@@ -30,7 +31,7 @@ class _VaccineTargetScreenState extends State<VaccineTargetScreen> {
           },
         ),
       ),
-      body: SingleChildScrollView(
+      body: data != null && context.watch<VaccineDataViewModel>().isLoading ? SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
@@ -93,7 +94,7 @@ class _VaccineTargetScreenState extends State<VaccineTargetScreen> {
             SizedBox(height: 20),
           ],
         ),
-      ),
+      ) : Center(child: CircularProgressIndicator()),
     );
   }
 

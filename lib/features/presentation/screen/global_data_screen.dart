@@ -32,37 +32,41 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
           },
         ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            SizedBox(height: 10),
-            Container(
-              padding:
-                  EdgeInsets.only(left: 20, top: 20, right: 20, bottom: 20),
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: cPrimaryColor.withOpacity(0.03),
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(50),
-                  bottomRight: Radius.circular(50),
-                ),
+      body: data != null && context.watch<GlobalDataViewModel>().isLoading
+          ? SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  SizedBox(height: 10),
+                  Container(
+                    padding: EdgeInsets.only(
+                        left: 20, top: 20, right: 20, bottom: 20),
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: cPrimaryColor.withOpacity(0.03),
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(50),
+                        bottomRight: Radius.circular(50),
+                      ),
+                    ),
+                    child: Wrap(
+                        runSpacing: 20,
+                        spacing: 20,
+                        children: data.map((e) {
+                          return DetailCard(
+                            title: e?.countryRegion.toString(),
+                            effectedNum: e?.confirmed.toString(),
+                            press: () {},
+                          );
+                        }).toList()),
+                  ),
+                  SizedBox(height: 20),
+                ],
               ),
-              child: Wrap(
-                  runSpacing: 20,
-                  spacing: 20,
-                  children: data.map((e) {
-                    return DetailCard(
-                      title: e?.countryRegion.toString(),
-                      effectedNum: e?.confirmed.toString(),
-                      press: () {},
-                    );
-                  }).toList()),
+            )
+          : Center(
+              child: CircularProgressIndicator(),
             ),
-            SizedBox(height: 20),
-          ],
-        ),
-      ),
     );
   }
 

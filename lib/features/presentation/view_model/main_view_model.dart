@@ -15,6 +15,10 @@ class MainViewModel extends ChangeNotifier {
 
   String _provinsiData = '';
 
+  bool _isLoading = false;
+
+  bool get isLoading => _isLoading;
+
   List<DataProvince> get getProvinsi => _provinsi;
   void setProvinsi(List value) {
     _provinsi = value;
@@ -63,6 +67,7 @@ class MainViewModel extends ChangeNotifier {
 
   getDataProvinsiIndonesia() async {
     CovidAppRemoteDataSource().getDataProvinsi().then((value) {
+      _isLoading = true;
       _provinsi = value;
       print(_provinsi.map((e) => e.attributes.toJson()).toList());
     });

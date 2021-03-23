@@ -13,15 +13,19 @@ class VaccineDataViewModel extends ChangeNotifier {
 
   int _total = 0;
 
+  bool _isLoading = false;
+
   // Just Getter, no Setter.
   int get getSumberDayaManusiaKesehatan => _sumberDayaManusiaKesehatan;
   int get getLansia => _lansia;
   int get getPetugasPublik => _petugasPublik;
   int get getVaksinasi => _vaksinasi1;
   int get getTotal => _total;
+  bool get isLoading => _isLoading;
 
   getAllVaccineData() async {
     CovidAppRemoteDataSource().getVaccineTarget().then((value) {
+      _isLoading = true;
       _sumberDayaManusiaKesehatan = value?.sasaranvaksinsdmk;
       _lansia = value?.sasaranvaksinlansia;
       _petugasPublik = value?.sasaranvaksinpetugaspublik;
