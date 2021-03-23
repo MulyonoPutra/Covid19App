@@ -66,7 +66,8 @@ class _TotalRecoverScreenState extends State<TotalRecoverScreen> {
                 ],
               ),
             )
-          : Center(child: CircularProgressIndicator()),
+          : Center(
+              child: CircularProgressIndicator(backgroundColor: Colors.purple)),
     );
   }
 

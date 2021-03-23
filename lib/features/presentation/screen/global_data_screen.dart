@@ -65,7 +65,7 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
               ),
             )
           : Center(
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator(backgroundColor: Colors.purple),
             ),
     );
   }
