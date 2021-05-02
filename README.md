@@ -8,5 +8,5 @@ Thanks to:
 - https://covid19.mathdro.id/api
 - https://vaksincovid19-api.now.sh/api/vaksin
 - https://resocoder.com/blog/ for MVVM Architecture
-- Ady Rangga for teaching me State Management Provider and HTTP Request in Flutter.
+- Ady Rangga for teaching me State Management Provider in Flutter.
 - Etc.
