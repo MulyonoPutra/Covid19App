@@ -213,32 +213,35 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           ),
         ),
       ),
-      bottomSheet: _currentPage == _numPages - 1
-          ? Container(
-              height: 70,
-              width: double.infinity,
-              color: Colors.white,
-              child: GestureDetector(
-                onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => HomeScreen()),
-                ),
-                child: Center(
-                  child: Padding(
-                    padding: EdgeInsets.only(bottom: 10.0),
-                    child: Text(
-                      'Get started',
-                      style: TextStyle(
-                        color: Color(0xFF5B16D0),
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
+      bottomSheet:
+          _currentPage == _numPages - 1 ? getStartedButton() : Text(''),
+    );
+  }
+
+  Widget getStartedButton() {
+    return Container(
+      height: 70,
+      width: double.infinity,
+      color: Colors.white,
+      child: GestureDetector(
+        onTap: () => Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => HomeScreen()),
+        ),
+        child: Center(
+          child: Padding(
+            padding: EdgeInsets.only(bottom: 10.0),
+            child: Text(
+              'Get started',
+              style: TextStyle(
+                color: Color(0xFF5B16D0),
+                fontSize: 20.0,
+                fontWeight: FontWeight.bold,
               ),
-            )
-          : Text(''),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
