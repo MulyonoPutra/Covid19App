@@ -1,3 +1,4 @@
+import 'package:covid19/features/data/data_source/firebase_auth_service.dart';
 import 'package:covid19/features/presentation/helper/list_category.dart';
 import 'package:covid19/features/presentation/screen/confirmed_case_screen.dart';
 import 'package:covid19/features/presentation/screen/total_recover_screen.dart';
@@ -21,9 +22,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
   List<CategorieModel> categories = <CategorieModel>[];
-  
+
   @override
   void initState() {
     super.initState();
@@ -48,20 +48,20 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-              Container(
-                        padding: EdgeInsets.symmetric(horizontal: 16),
-                        height: 70,
-                        child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: categories.length,
-                            itemBuilder: (context, index) {
-                              return CategoryCard(
-                                imageAssetUrl: categories[index].imageAssetUrl,
-                                categoryName: categories[index].categorieName,
-                                route: categories[index].route,
-                              );
-                            }),
-                      ),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              height: 70,
+              child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: categories.length,
+                  itemBuilder: (context, index) {
+                    return CategoryCard(
+                      imageAssetUrl: categories[index].imageAssetUrl,
+                      categoryName: categories[index].categorieName,
+                      route: categories[index].route,
+                    );
+                  }),
+            ),
             SizedBox(height: 10),
             _buildStatistic(),
             Container(
@@ -153,6 +153,21 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             SizedBox(height: 12),
             globalMap(),
+            SizedBox(height: 20),
+            Center(
+              child: ElevatedButton(
+                onPressed: () async {
+                  await AuthServices.signOut();
+                },
+                style: ElevatedButton.styleFrom(
+                    primary: Color(0xFF5856D6),
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    textStyle:
+                        TextStyle(fontSize: 13, fontWeight: FontWeight.bold)),
+                child: Text('Sign Out'),
+              ),
+            ),
+            SizedBox(height: 20),
           ],
         ),
       ),
@@ -253,6 +268,4 @@ class _HomeScreenState extends State<HomeScreen> {
       ],
     );
   }
-
-
 }

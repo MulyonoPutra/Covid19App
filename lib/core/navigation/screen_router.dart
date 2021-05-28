@@ -1,4 +1,5 @@
 import 'package:covid19/core/navigation/path_router.dart';
+import 'package:covid19/features/presentation/screen/authentication_screen.dart';
 import 'package:covid19/features/presentation/screen/confirmed_case_screen.dart';
 import 'package:covid19/features/presentation/screen/global_data_screen.dart';
 import 'package:covid19/features/presentation/screen/home_screen.dart';
@@ -47,6 +48,14 @@ class ScreenRouter {
             settings: settings,
             pageBuilder: (context, animation, secondaryAnimation) =>
                 TotalRecoverScreen(),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) => child);
+
+      case PathRouter.authentication:
+        return PageRouteBuilder(
+            settings: settings,
+            pageBuilder: (context, animation, secondaryAnimation) =>
+                AuthenticationScreen(),
             transitionsBuilder:
                 (context, animation, secondaryAnimation, child) => child);
 

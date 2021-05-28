@@ -1,8 +1,7 @@
+import 'package:covid19/features/presentation/helper/wrapper.dart';
 import 'package:covid19/features/presentation/utils/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import 'home_screen.dart';
 
 class OnboardingScreen extends StatefulWidget {
   @override
@@ -64,7 +63,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   child: TextButton(
                     onPressed: () => Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => HomeScreen()),
+                      MaterialPageRoute(builder: (context) => Wrapper()),
                     ),
                     child: Text(
                       'Skip',
@@ -226,7 +225,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       child: GestureDetector(
         onTap: () => Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => HomeScreen()),
+          MaterialPageRoute(builder: (context) => Wrapper()),
         ),
         child: Center(
           child: Padding(

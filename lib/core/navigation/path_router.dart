@@ -8,6 +8,7 @@ class PathRouter {
   static const confirmedCases = "/confirmedCases";
   static const globalData = "/globalData";
   static const vaccineData = "/vaccineData";
+  static const authentication = "/authentication";
 
   static final RouteObserver<PageRoute> routeObserver =
       RouteObserver<PageRoute>();
